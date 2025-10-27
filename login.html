@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management System - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 100%;
+            max-width: 900px;
+            min-height: 500px;
+            display: flex;
+        }
+
+        .login-side {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .customer-side {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .owner-side {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+        }
+
+        .divider {
+            width: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .login-form {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input[type="email"]::placeholder,
+        input[type="password"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .login-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .register-link {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .register-link a {
+            color: white;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .register-link a:hover {
+            opacity: 0.8;
+        }
+
+        .demo-credentials {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            text-align: left;
+        }
+
+        .demo-credentials h4 {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .demo-credentials p {
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+                margin: 20px;
+                max-width: 400px;
+            }
+
+            .login-side {
+                padding: 30px 20px;
+            }
+
+            .divider {
+                width: 100%;
+                height: 2px;
+                top: auto;
+                bottom: 0;
+                right: auto;
+            }
+        }
+
+        .error-message {
+            background: rgba(255, 0, 0, 0.2);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+
+        .success-message {
+            background: rgba(0, 255, 0, 0.2);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Customer Login Side -->
+        <div class="login-side customer-side">
+            <div class="icon">👤</div>
+            <h2>Customer Login</h2>
+            <p class="subtitle">Access your personal menu and orders</p>
+            
+            <form class="login-form" id="customerForm">
+                <div id="customerMessage"></div>
+                
+                <div class="form-group">
+                    <label for="customerEmail">Email Address</label>
+                    <input type="email" id="customerEmail" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerPassword">Password</label>
+                    <input type="password" id="customerPassword" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="login-btn">Login as Customer</button>
+                
+                <div class="register-link">
+                    Don't have an account? <a href="#" onclick="showRegister('customer')">Register here</a>
+                </div>
+            </form>
+
+            <div class="demo-credentials">
+                <h4>Demo Credentials:</h4>
+                <p><strong>Email:</strong> customer@hotel.com</p>
+                <p><strong>Password:</strong> customer123</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Owner Login Side -->
+        <div class="login-side owner-side">
+            <div class="icon">🏨</div>
+            <h2>Owner Login</h2>
+            <p class="subtitle">Manage your hotel operations</p>
+            
+            <form class="login-form" id="ownerForm">
+                <div id="ownerMessage"></div>
+                
+                <div class="form-group">
+                    <label for="ownerEmail">Email Address</label>
+                    <input type="email" id="ownerEmail" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ownerPassword">Password</label>
+                    <input type="password" id="ownerPassword" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="login-btn">Login as Owner</button>
+                
+                <div class="register-link">
+                    Don't have an account? <a href="#" onclick="showRegister('owner')">Register here</a>
+                </div>
+            </form>
+
+            <div class="demo-credentials">
+                <h4>Demo Credentials:</h4>
+                <p><strong>Email:</strong> owner@hotel.com</p>
+                <p><strong>Password:</strong> admin123</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize demo users
+        function initializeUsers() {
+            const users = {
+                customers: [
+                    { email: 'customer@hotel.com', password: 'customer123', name: 'John Customer' },
+                    { email: 'guest@hotel.com', password: 'guest123', name: 'Jane Guest' }
+                ],
+                owners: [
+                    { email: 'owner@hotel.com', password: 'admin123', name: 'Hotel Owner' },
+                    { email: 'manager@hotel.com', password: 'manager123', name: 'Hotel Manager' }
+                ]
+            };
+            
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        // Show message
+        function showMessage(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `<div class="${type}-message">${message}</div>`;
+            setTimeout(() => {
+                element.innerHTML = '';
+            }, 5000);
+        }
+
+        // Customer login
+        document.getElementById('customerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('customerEmail').value;
+            const password = document.getElementById('customerPassword').value;
+            
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            const customers = users.customers || [];
+            
+            const customer = customers.find(c => c.email === email && c.password === password);
+            
+            if (customer) {
+                // Store customer session
+                localStorage.setItem('customerLoggedIn', 'true');
+                localStorage.setItem('customerEmail', email);
+                localStorage.setItem('customerName', customer.name);
+                
+                showMessage('customerMessage', 'Login successful! Redirecting...', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = 'customer-dashboard.html';
+                }, 1500);
+            } else {
+                showMessage('customerMessage', 'Invalid email or password!', 'error');
+            }
+        });
+
+        // Owner login
+        document.getElementById('ownerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('ownerEmail').value;
+            const password = document.getElementById('ownerPassword').value;
+            
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            const owners = users.owners || [];
+            
+            const owner = owners.find(o => o.email === email && o.password === password);
+            
+            if (owner) {
+                // Store owner session
+                localStorage.setItem('ownerLoggedIn', 'true');
+                localStorage.setItem('ownerEmail', email);
+                localStorage.setItem('ownerName', owner.name);
+                
+                showMessage('ownerMessage', 'Login successful! Redirecting...', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = 'hotel-management-dashboard.html';
+                }, 1500);
+            } else {
+                showMessage('ownerMessage', 'Invalid email or password!', 'error');
+            }
+        });
+
+        // Register function (simplified)
+        function showRegister(type) {
+            const email = prompt(`Enter email for new ${type}:`);
+            const password = prompt(`Enter password for new ${type}:`);
+            const name = prompt(`Enter name for new ${type}:`);
+            
+            if (email && password && name) {
+                const users = JSON.parse(localStorage.getItem('users') || '{}');
+                
+                if (!users[type + 's']) {
+                    users[type + 's'] = [];
+                }
+                
+                users[type + 's'].push({ email, password, name });
+                localStorage.setItem('users', JSON.stringify(users));
+                
+                alert(`${type.charAt(0).toUpperCase() + type.slice(1)} registered successfully!`);
+            }
+        }
+
+        // Initialize users on page load
+        initializeUsers();
+    </script>
+</body>
+</html>

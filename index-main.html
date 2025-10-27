@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Management System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .welcome-container {
+            text-align: center;
+            max-width: 600px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hotel-icon {
+            font-size: 5rem;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .login-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .login-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 20px 40px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .login-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-btn .icon {
+            font-size: 1.5rem;
+        }
+
+        .features {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
+
+        .feature .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-container {
+                margin: 20px;
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .login-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .login-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <div class="hotel-icon">🏨</div>
+        <h1>Hotel Management System</h1>
+        <p class="subtitle">Welcome to our digital dining experience</p>
+        
+        <div class="login-buttons">
+            <a href="login.html" class="login-btn">
+                <span class="icon">👤</span>
+                Customer Login
+            </a>
+            <a href="login.html" class="login-btn">
+                <span class="icon">🏨</span>
+                Owner Login
+            </a>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="icon">📱</div>
+                <h3>QR Code Ordering</h3>
+                <p>Scan QR code to access menu and place orders</p>
+            </div>
+            <div class="feature">
+                <div class="icon">⚡</div>
+                <h3>Real-time Updates</h3>
+                <p>Get instant notifications about your order status</p>
+            </div>
+            <div class="feature">
+                <div class="icon">🍽️</div>
+                <h3>Digital Menu</h3>
+                <p>Browse our complete menu with photos and prices</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-redirect to login after 5 seconds if no interaction
+        let redirectTimer = setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 5000);
+
+        // Clear timer if user interacts with page
+        document.addEventListener('click', () => {
+            clearTimeout(redirectTimer);
+        });
+
+        document.addEventListener('keypress', () => {
+            clearTimeout(redirectTimer);
+        });
+    </script>
+</body>
+</html>
